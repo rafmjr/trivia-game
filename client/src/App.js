@@ -1,32 +1,37 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import Welcome from "./Welcome";
+import Activity from "./Activity";
+import Congratulations from "./Congratulations";
+import { getQuestions } from "./api";
 
 function App() {
-  const [message, setMessage] = useState(() => (
-    <>
-      Edit <code>src/App.js</code> and save to reload.
-    </>
-  ));
+  const [questions, setQuestions] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [teamName, setTeamName] = useState("");
 
-  const response = fetch("http://localhost:3001/users")
-    .then((res) => res.text())
-    .then(setMessage);
+  if (!questions.length) {
+    getQuestions().then(setQuestions);
+  }
+
+  const currentQuestion = questions[currentIndex];
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{message}</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Trivia</h1>
+      {teamName.length === 0 ? (
+        <Welcome updateTeamName={setTeamName} />
+      ) : currentQuestion ? (
+        <>
+          [[{teamName}]]
+          <Activity
+            question={currentQuestion}
+            updateQuestion={() => setCurrentIndex(currentIndex + 1)}
+          />
+        </>
+      ) : (
+        <Congratulations />
+      )}
     </div>
   );
 }
