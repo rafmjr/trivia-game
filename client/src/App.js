@@ -1,39 +1,41 @@
-import React, { useState } from "react";
-import "./App.css";
-import Welcome from "./Welcome";
-import Activity from "./Activity";
-import Congratulations from "./Congratulations";
-import { getQuestions } from "./api";
+import React, { useState } from 'react';
+import './App.css';
+import Welcome from './components/Welcome';
+import Activity from './components/Activity';
+import Congratulations from './components/Congratulations';
+import { getActivities } from './http/api';
 
 function App() {
-  const [questions, setQuestions] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [teamName, setTeamName] = useState("");
+    const [activities, setActivities] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [teamName, setTeamName] = useState('');
 
-  if (!questions.length) {
-    getQuestions().then(setQuestions);
-  }
+    if (!activities.length) {
+        // TODO: handle errors
+        // TODO: this is firing 4 api calls when it only should do it once
+        getActivities().then(({ data }) => setActivities(data));
+    }
 
-  const currentQuestion = questions[currentIndex];
+    const currentActivity = activities[currentIndex];
 
-  return (
-    <div className="App">
-      <h1>Trivia</h1>
-      {teamName.length === 0 ? (
-        <Welcome updateTeamName={setTeamName} />
-      ) : currentQuestion ? (
-        <>
-          [[{teamName}]]
-          <Activity
-            question={currentQuestion}
-            updateQuestion={() => setCurrentIndex(currentIndex + 1)}
-          />
-        </>
-      ) : (
-        <Congratulations />
-      )}
-    </div>
-  );
+    return (
+        <div className="App">
+            <h1>Trivia</h1>
+            {teamName.length === 0 ? (
+                <Welcome updateTeamName={setTeamName} />
+            ) : currentActivity ? (
+                <>
+                    [[{teamName}]]
+                    <Activity
+                        activity={currentActivity}
+                        updateActivity={() => setCurrentIndex(currentIndex + 1)}
+                    />
+                </>
+            ) : (
+                <Congratulations />
+            )}
+        </div>
+    );
 }
 
 export default App;
