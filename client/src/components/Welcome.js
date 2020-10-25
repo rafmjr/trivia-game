@@ -10,12 +10,7 @@ export default function Welcome({ updateTeamName }) {
             }}
         >
             <p>Welcome! Enter your team name</p>
-            <input
-                type="text"
-                value={teamName}
-                onChange={(ev) => setTeamName(ev.target.value)}
-                required
-            />
+            <input type="text" value={teamName} onChange={(ev) => setTeamName(ev.target.value)} required />
             <button type="submit">Start</button>
         </form>
     );

@@ -8,11 +8,17 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
-app.use(cors());
+app.use(
+    cors({
+        origin: ['http://localhost:3000'], // TODO: environment variable
+        credentials: true,
+        exposedHeaders: ['set-cookie'],
+    })
+);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 app.use('/', indexRouter);
 
