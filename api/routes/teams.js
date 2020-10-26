@@ -6,6 +6,6 @@ const checkTeamStore = require('../middleware/validators/checkTeamStore');
 const hasTeam = require('../middleware/hasTeam');
 
 router.post('/', checkTeamStore, TeamsController.store);
-router.get('/current', hasTeam, TeamsController.current);
+router.get('/current', TeamsController.current);
 
 module.exports = router;
