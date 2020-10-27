@@ -27,6 +27,11 @@ class ActivitiesController {
         const activity = await Activity.findOne({ _id: { $gt: lastResult.activity } });
         return res.send({ activity });
     }
+
+    static async store(req, res) {
+        const activity = await Activity.create({ question: req.body.question, answers: req.body.answers });
+        return res.status(201).send(activity);
+    }
 }
 
 module.exports = ActivitiesController;

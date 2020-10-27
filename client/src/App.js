@@ -1,15 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Admin from './Admin';
-import Trivia from './Trivia';
+import Dashboard from './pages/admin';
+import Index from './pages';
 
 function App() {
     return (
         <Router>
             <div className="App">
-                <Route path="/" component={Trivia} exact />
-                <Route path="/admin" component={Admin} exact />
+                <Switch>
+                    <Route path="/" component={Index} exact />
+                    <Route path="/admin" component={Dashboard} />
+                </Switch>
             </div>
         </Router>
     );

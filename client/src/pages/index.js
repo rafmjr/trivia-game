@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Welcome from './components/Welcome';
-import Activity from './components/Activity';
-import Congratulations from './components/Congratulations';
-import { getCurrentTeam, createTeam, getCurrentActivity, createResult } from './http/api';
+import Welcome from '../components/Welcome';
+import Activity from '../components/Activity';
+import Congratulations from '../components/Congratulations';
+import { getCurrentTeam, createTeam, getCurrentActivity, createResult } from '../http/api';
 
 // TODO: handle HTTP errors
-function Trivia() {
+function Index() {
     // use team name state and set default values
     const [teamName, setTeamName] = useState(window.localStorage.getItem('teamName') || '');
     useEffect(() => {
@@ -17,7 +17,6 @@ function Trivia() {
 
     // use activity state and set default values
     const [currentActivity, setCurrentActivity] = useState(JSON.parse(window.localStorage.getItem('currentActivity')));
-    console.dir(currentActivity);
     useEffect(() => {
         if (!teamName) return;
         updateActivity();
@@ -42,7 +41,7 @@ function Trivia() {
     }
 
     return (
-        <div className="Trivia">
+        <div className="Index">
             <h1>Trivia</h1>
             {!teamName && <Welcome updateTeamName={updateTeamName} />}
             {teamName && currentActivity && (
@@ -56,4 +55,4 @@ function Trivia() {
     );
 }
 
-export default Trivia;
+export default Index;

@@ -1,6 +1,11 @@
 const Team = require('../models/Team');
 
 class TeamsController {
+    static async index(req, res) {
+        const teams = await Team.find({}).populate('results').exec();
+        return res.send({ teams });
+    }
+
     static async store(req, res) {
         try {
             // create a team
