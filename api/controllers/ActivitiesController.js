@@ -30,7 +30,20 @@ class ActivitiesController {
 
     static async store(req, res) {
         const activity = await Activity.create({ question: req.body.question, answers: req.body.answers });
-        return res.status(201).send(activity);
+        return res.status(201).send({ activity });
+    }
+
+    static async update(req, res) {
+        const activity = await Activity.updateOne(
+            { _id: req.params.activityId },
+            { question: req.body.question, answers: req.body.answers }
+        );
+        return res.send({ activity });
+    }
+
+    static async delete(req, res) {
+        await Activity.deleteOne({ _id: req.params.activityId });
+        return res.sendStatus(204);
     }
 }
 

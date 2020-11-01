@@ -2,7 +2,9 @@ const Team = require('../models/Team');
 
 class TeamsController {
     static async index(req, res) {
-        const teams = await Team.find({}).populate('results').exec();
+        const teams = await Team.find({})
+            .populate({ path: 'results', populate: { path: 'activity' } })
+            .exec();
         return res.send({ teams });
     }
 

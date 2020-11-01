@@ -9,6 +9,10 @@ const router = express.Router();
 router.get('/', ActivitiesController.index);
 router.get('/current', hasTeam, ActivitiesController.current);
 router.get('/:activityId', ActivitiesController.show);
-router.post('/', auth, checkActivityStore, ActivitiesController.store);
+
+router.use(auth);
+router.post('/', checkActivityStore, ActivitiesController.store);
+router.put('/:activityId', checkActivityStore, ActivitiesController.update);
+router.delete('/:activityId', ActivitiesController.delete);
 
 module.exports = router;

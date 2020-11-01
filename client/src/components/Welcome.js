@@ -8,10 +8,15 @@ export default function Welcome({ updateTeamName }) {
                 ev.preventDefault();
                 updateTeamName(teamName);
             }}
+            className="Welcome"
         >
-            <p>Welcome! Enter your team name</p>
+            <h1>Enter name to Get Started</h1>
             <input type="text" value={teamName} onChange={(ev) => setTeamName(ev.target.value)} required />
-            <button type="submit">Start</button>
+            <div className="button-wrapper">
+                <button type="submit">
+                    <span>Start</span>
+                </button>
+            </div>
         </form>
     );
 }

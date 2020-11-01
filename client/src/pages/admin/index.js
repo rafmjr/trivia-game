@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
+import './index.css';
 import Activities from './activities';
 import Teams from './teams';
 

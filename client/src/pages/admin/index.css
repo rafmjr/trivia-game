@@ -1,0 +1,16 @@
+body {
+    background-image: none !important;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    color: white !important;
+}
+
+input {
+    margin: 1rem !important;
+}

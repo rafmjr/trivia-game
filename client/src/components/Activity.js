@@ -7,7 +7,7 @@ export default function Activity({ activity, setResult }) {
 
     const option = activity.answers.length ? (
         activity.answers.map((option, index) => (
-            <div key={index}>
+            <div key={index} style={{ marginTop: '1rem' }}>
                 <input
                     type="radio"
                     value={option}
@@ -15,6 +15,7 @@ export default function Activity({ activity, setResult }) {
                     onChange={handleChange}
                     id={index}
                     required
+                    style={{ marginRight: '1rem' }}
                 />
                 <label htmlFor={index}>{option}</label>
             </div>
@@ -37,12 +38,15 @@ export default function Activity({ activity, setResult }) {
                 // reset the answer for next activy
                 setAnswer('');
             }}
+            className="Welcome"
         >
-            <p>{activity.question}</p>
+            <h2>{activity.question}</h2>
             {option}
-            <p>
-                <button type="submit">Submit</button>
-            </p>
+            <div className="button-wrapper">
+                <button type="submit">
+                    <span>Submit</span>
+                </button>
+            </div>
         </form>
     );
 }

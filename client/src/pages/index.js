@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './index.css';
 import Welcome from '../components/Welcome';
 import Activity from '../components/Activity';
 import Congratulations from '../components/Congratulations';
@@ -18,7 +19,7 @@ function Index() {
     // use activity state and set default values
     const [currentActivity, setCurrentActivity] = useState(JSON.parse(window.localStorage.getItem('currentActivity')));
     useEffect(() => {
-        if (!teamName) return;
+        if (!teamName || currentActivity) return;
         updateActivity();
     });
 
@@ -29,7 +30,7 @@ function Index() {
     }, [teamName, currentActivity]);
 
     function updateTeamName(name) {
-        createTeam({ name }).then(() => setTeamName(name));
+        createTeam({ name }).then(({ data }) => setTeamName(data.team.name));
     }
 
     function setResult(solution) {
@@ -42,15 +43,14 @@ function Index() {
 
     return (
         <div className="Index">
-            <h1>Trivia</h1>
             {!teamName && <Welcome updateTeamName={updateTeamName} />}
             {teamName && currentActivity && (
                 <>
-                    <h3>{teamName}</h3>
+                    <h3 style={{ textAlign: 'left', marginLeft: '5%' }}>{teamName}</h3>
                     <Activity activity={currentActivity} setResult={setResult} />
                 </>
             )}
-            {teamName && !currentActivity && <Congratulations />}
+            {teamName && !currentActivity && <Congratulations teamName={teamName} />}
         </div>
     );
 }
