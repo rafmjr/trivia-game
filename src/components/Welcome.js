@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import logo from '../assets//images/logo.png';
+import logo from '../assets/images/logo.png';
+import './Welcome.scss';
 
 export default function Welcome({ updateTeamName }) {
     const [teamName, setTeamName] = useState('');
@@ -11,13 +12,20 @@ export default function Welcome({ updateTeamName }) {
             }}
             className="Welcome"
         >
-            <h1>Simply</h1>
-            <img src={logo} alt="" />
-            <input type="text" value={teamName} onChange={(ev) => setTeamName(ev.target.value)} required />
-            <div className="button-wrapper">
-                <button type="submit">
-                    <span>Start</span>
-                </button>
+            <div className="title">
+                <h1>Simply</h1>
+                <img src={logo} alt="" />
+            </div>
+
+            <div className="input-group">
+                <input
+                    type="text"
+                    value={teamName}
+                    onChange={(ev) => setTeamName(ev.target.value)}
+                    placeholder="What's your team name?"
+                    required
+                />
+                <button type="submit">Let's Get Started!</button>
             </div>
         </form>
     );

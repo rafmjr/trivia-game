@@ -13,11 +13,13 @@ class ActivitiesController {
     }
 
     static async current(req, res) {
+        const total = await Activity.estimatedDocumentCount();
+        const pagination = { total, current: req.team.results.length + 1 };
         // if the team hasn't done any activities yet
         if (!req.team.results.length) {
             // get the first one available and return it
             const activity = await Activity.findOne({});
-            return res.send({ activity });
+            return res.send({ activity, pagination });
         }
         // else, populate the results
         const team = await req.team.populate('results').execPopulate();
@@ -25,7 +27,7 @@ class ActivitiesController {
         const lastResult = team.results[team.results.length - 1];
         // find the next activity and return it
         const activity = await Activity.findOne({ _id: { $gt: lastResult.activity } });
-        return res.send({ activity });
+        return res.send({ activity, pagination });
     }
 
     static async store(req, res) {

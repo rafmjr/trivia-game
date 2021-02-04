@@ -1,7 +1,7 @@
 module.exports = (req, res, next) => {
-    if (!req.body.activityId || !req.body.solution) {
+    if (!req.body.activityId) {
         return res.status(400).send({
-            error: `Missing required parameter ${!activityId ? 'activityId' : 'solution'}`,
+            error: `Missing required parameter activityId`,
         });
     }
     next();

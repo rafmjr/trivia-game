@@ -1,0 +1,176 @@
+.Activity {
+    padding: 2em 4em 0;
+    position: relative;
+    height: calc(100vh - 2em);
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 2em;
+        border-bottom: 1px #333 solid;
+
+        .logo,
+        p {
+            flex: 1;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+
+            span {
+                font-size: 2em;
+                text-transform: uppercase;
+            }
+
+            img {
+                max-width: 200px;
+            }
+        }
+
+        strong {
+            font-weight: bold;
+        }
+    }
+
+    main {
+        padding: 0 2em;
+        display: flex;
+        flex-direction: row;
+
+        .question {
+            h2 {
+                letter-spacing: 0.1em;
+                font-size: 2em;
+            }
+
+            span {
+                color: #ff6c02;
+                font-size: 4em;
+                float: left;
+                margin-right: 1em;
+            }
+        }
+
+        .options {
+            display: flex;
+            margin-top: 100px;
+
+            figure {
+                flex: 1;
+                margin: 0;
+                border: 1px solid #fff;
+                margin-right: 2em;
+
+                img {
+                    height: 100%;
+                }
+            }
+
+            article {
+                flex: 2;
+
+                [type='radio'] {
+                    display: none;
+                }
+
+                label {
+                    background-color: rgba(255, 255, 255, 0.1);
+                    font-size: 1.825em;
+                    display: block;
+                    margin-bottom: 10px;
+                    border-radius: 4px;
+                    padding: 0.5em 1em;
+                    transition: all 500ms;
+                    border-color: #000;
+                }
+
+                [type='radio']:checked + label {
+                    border: 1px #ff6c02 solid;
+                }
+            }
+        }
+
+        .question-column {
+            flex: 1;
+        }
+
+        .arrow-column {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2em 0 2em 2em;
+
+            .icon {
+                position: relative;
+                top: 20%;
+                width: 70px;
+                height: 70px;
+                cursor: pointer;
+                border: 11px #ff6c02 solid;
+                border-radius: 100%;
+
+                .arrow {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 66%;
+                    height: 10px;
+                    background-color: #ff6c02;
+                    box-shadow: 0 3px 5px rgba(0, 0, 0, 20%);
+                    animation: arrow 700ms linear infinite;
+                    transform: translate(-50%, -50%);
+                }
+
+                .arrow::after,
+                .arrow::before {
+                    content: '';
+                    position: absolute;
+                    width: 80%;
+                    height: 10px;
+                    right: -8px;
+                    background-color: #ff6c02;
+                }
+
+                .arrow::after {
+                    top: -10px;
+                    transform: rotate(45deg);
+                }
+
+                .arrow::before {
+                    top: 10px;
+                    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+                    transform: rotate(-45deg);
+                }
+
+                button {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .counter {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 3em;
+
+        span {
+            display: inline-block;
+            width: 50%;
+            background-color: #ff6c02;
+            height: 100%;
+            text-align: right;
+            padding-right: 0.7em;
+            font-size: 2em;
+            line-height: 1.5em;
+            transition: all 200ms linear;
+        }
+    }
+}

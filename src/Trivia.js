@@ -18,16 +18,18 @@ function Trivia() {
 
     // use activity state and set default values
     const [currentActivity, setCurrentActivity] = useState(JSON.parse(window.localStorage.getItem('currentActivity')));
+    const [pagination, setPagination] = useState(JSON.parse(window.localStorage.getItem('pagination')) || {});
     useEffect(() => {
         if (!teamName || currentActivity) return;
         updateActivity();
-    });
+    }, [teamName, currentActivity]);
 
     // store the state in localStorage
     useEffect(() => {
         window.localStorage.setItem('teamName', teamName);
+        window.localStorage.setItem('pagination', JSON.stringify(pagination));
         window.localStorage.setItem('currentActivity', JSON.stringify(currentActivity));
-    }, [teamName, currentActivity]);
+    }, [teamName, currentActivity, pagination]);
 
     function updateTeamName(name) {
         createTeam({ name }).then(({ data }) => setTeamName(data.team.name));
@@ -38,7 +40,10 @@ function Trivia() {
     }
 
     function updateActivity() {
-        getCurrentActivity().then(({ data }) => setCurrentActivity(data.activity));
+        getCurrentActivity().then(({ data }) => {
+            setPagination(data.pagination);
+            setCurrentActivity(data.activity);
+        });
     }
 
     return (
@@ -46,8 +51,12 @@ function Trivia() {
             {!teamName && <Welcome updateTeamName={updateTeamName} />}
             {teamName && currentActivity && (
                 <>
-                    <h3 style={{ textAlign: 'left', marginLeft: '5%' }}>{teamName}</h3>
-                    <Activity activity={currentActivity} setResult={setResult} />
+                    <Activity
+                        teamName={teamName}
+                        activity={currentActivity}
+                        pagination={pagination}
+                        setResult={setResult}
+                    />
                 </>
             )}
             {teamName && !currentActivity && <Congratulations teamName={teamName} />}
