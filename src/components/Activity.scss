@@ -31,6 +31,14 @@
             }
         }
 
+        p {
+            font-size: 1.25em;
+        }
+
+        p:last-child {
+            font-size: 1.5em;
+        }
+
         strong {
             font-weight: bold;
         }
@@ -57,7 +65,7 @@
 
         .options {
             display: flex;
-            margin-top: 100px;
+            margin-top: 4em;
 
             figure {
                 flex: 1;
@@ -85,7 +93,11 @@
                     border-radius: 4px;
                     padding: 0.5em 1em;
                     transition: all 500ms;
-                    border-color: #000;
+                    border: 1px solid #000;
+
+                    &:hover {
+                        border: 1px #fff solid;
+                    }
                 }
 
                 [type='radio']:checked + label {
@@ -110,19 +122,35 @@
                 width: 70px;
                 height: 70px;
                 cursor: pointer;
-                border: 11px #ff6c02 solid;
+                border: 0.5em #ff6c02 solid;
                 border-radius: 100%;
+                transition: all 500ms;
+
+                &:hover {
+                    animation-name: example;
+                    animation-duration: 1s;
+                    animation-iteration-count: infinite;
+                    animation-timing-function: ease-in-out;
+                    border-color: #eb690c;
+
+                    .arrow,
+                    .arrow::after,
+                    .arrow::before {
+                        background-color: #eb690c;
+                    }
+                }
 
                 .arrow {
                     position: absolute;
                     top: 50%;
                     left: 50%;
                     width: 66%;
-                    height: 10px;
+                    height: 0.5em;
                     background-color: #ff6c02;
                     box-shadow: 0 3px 5px rgba(0, 0, 0, 20%);
                     animation: arrow 700ms linear infinite;
                     transform: translate(-50%, -50%);
+                    transition: all 500ms;
                 }
 
                 .arrow::after,
@@ -130,9 +158,10 @@
                     content: '';
                     position: absolute;
                     width: 80%;
-                    height: 10px;
+                    height: 0.5em;
                     right: -8px;
                     background-color: #ff6c02;
+                    transition: all 500ms;
                 }
 
                 .arrow::after {
@@ -172,5 +201,15 @@
             line-height: 1.5em;
             transition: all 200ms linear;
         }
+    }
+}
+
+@keyframes example {
+    from {
+        transform: translateX(5%);
+    }
+
+    to {
+        transform: translateX(0);
     }
 }

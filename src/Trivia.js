@@ -19,10 +19,16 @@ function Trivia() {
     // use activity state and set default values
     const [currentActivity, setCurrentActivity] = useState(JSON.parse(window.localStorage.getItem('currentActivity')));
     const [pagination, setPagination] = useState(JSON.parse(window.localStorage.getItem('pagination')) || {});
+    const [totalActivities, setTotalActivities] = useState(0);
     useEffect(() => {
         if (!teamName || currentActivity) return;
         updateActivity();
     }, [teamName, currentActivity]);
+
+    useEffect(() => {
+        if (!pagination) return;
+        setTotalActivities(pagination.total);
+    }, [pagination]);
 
     // store the state in localStorage
     useEffect(() => {
@@ -48,18 +54,20 @@ function Trivia() {
 
     return (
         <div className="Trivia">
-            {!teamName && <Welcome updateTeamName={updateTeamName} />}
-            {teamName && currentActivity && (
-                <>
+            {teamName ? (
+                currentActivity ? (
                     <Activity
                         teamName={teamName}
                         activity={currentActivity}
                         pagination={pagination}
                         setResult={setResult}
                     />
-                </>
+                ) : (
+                    <Congratulations teamName={teamName} totalActivities={totalActivities} />
+                )
+            ) : (
+                <Welcome updateTeamName={updateTeamName} />
             )}
-            {teamName && !currentActivity && <Congratulations teamName={teamName} />}
         </div>
     );
 }

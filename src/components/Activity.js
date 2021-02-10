@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import logo from '../assets/images/logo.png';
 import './Activity.scss';
 
-const TIME_LIMIT = 10;
+const TIME_LIMIT = 90;
 
 export default function Activity({ teamName, activity, setResult, pagination }) {
     const [answer, setAnswer] = useState('');
