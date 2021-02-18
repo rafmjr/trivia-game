@@ -107,10 +107,7 @@ function Options({ options, value, onChange }) {
         ))
     ) : (
         <div>
-            <label htmlFor="textAnswer" style={{ display: 'block' }}>
-                Enter Answer
-            </label>
-            <input type="text" value={value} onChange={onChange} id="textAnswer" />
+            <input type="text" value={value} onChange={onChange} placeholder="Enter Answer" />
         </div>
     );
 }

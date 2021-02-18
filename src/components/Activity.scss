@@ -104,6 +104,33 @@
                     border: 1px #ff6c02 solid;
                 }
             }
+
+            input[type='text'] {
+                padding: 0.687em;
+                font-size: 1.5em;
+                border-radius: 4px;
+                border: none;
+                text-align: center;
+                color: #707070;
+                width: 80%;
+                margin: 100px;
+            }
+
+            ::placeholder {
+                /* Chrome, Firefox, Opera, Safari 10.1+ */
+                color: #707070;
+                opacity: 1; /* Firefox */
+            }
+
+            :-ms-input-placeholder {
+                /* Internet Explorer 10-11 */
+                color: #707070;
+            }
+
+            ::-ms-input-placeholder {
+                /* Microsoft Edge */
+                color: #707070;
+            }
         }
 
         .question-column {
