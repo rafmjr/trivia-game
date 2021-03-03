@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+require('dotenv').config();
+require('../services/database');
+
+const Activity = require('../models/Activity');
+
+Promise.all(
+    Object.entries({
+        'If youve ordered a burn one, take it through the garden, pin a rose on it, what can you expect to be placed in front of you?': [
+            [
+                'Hot Dog with Chili and Coleslaw',
+                'Lamb Shish - Kabob',
+                'Hamburger with Lettuce, Tomato and Onion',
+                'Tuna Melt on Rye with Lettuce and Dill Chips',
+            ],
+            'Hot Dog with Chili and Coleslaw',
+        ],
+        'Noahs Boy refers to a fish sandwich.': [['False', 'True'], 'False'],
+        'Due to the shape of its fruits, Aztecs called this tree Ahuacuatl, which meant testicle tree.': [
+            [],
+            'Avocado',
+        ],
+    }).map(([question, [answers, solution]]) => Activity.create({ question, answers, solution }))
+).then(() => process.exit());
