@@ -41,7 +41,6 @@ class ActivitiesController {
     }
 
     static async update(req, res) {
-        console.log('Picture Path', typeof req.body.picture);
         const activity = await Activity.updateOne(
             { _id: req.params.activityId },
             {

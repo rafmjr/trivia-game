@@ -44,6 +44,10 @@ export function createResult({ activityId, solution }) {
     return axios.post('/results', { activityId, solution });
 }
 
+export function deleteResults() {
+    return axios.delete('/results');
+}
+
 export function login({ password }) {
     return axios.post('/login', { password });
 }
