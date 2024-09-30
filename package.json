@@ -31,13 +31,23 @@
             "last 1 safari version"
         ]
     },
-    "keywords": [],
-    "author": "",
+    "keywords": [
+        "trivia",
+        "game",
+        "react",
+        "express",
+        "mongoose",
+        "node"
+    ],
+    "author": "rafmjr",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/rafmjr/trivia-game/issues"
     },
     "homepage": "/",
+    "engines": {
+        "node": ">=14.0.0 < 18.0.0"
+    },
     "dependencies": {
         "@coreui/chartjs": "^2.0.0",
         "@coreui/coreui": "^3.2.2",

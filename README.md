@@ -1,30 +1,28 @@
-# Foobar
+# Simply Trivia
 
-Foobar is a Python library for dealing with word pluralization.
+Fun little trivia game with the intent of showcasing React and Express interacting as a Front-end and Back-end application.
+
+![Simply Trivia Homescreen](splashscreen.png)
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+We use DotEnv to manage environment variables, make sure to create the `.env` file:
 
 ```bash
-pip install foobar
+cp .env.example .env
 ```
 
-## Usage
-
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
+Then proceed to install dependencies and run the project like so:
+```bash
+npm install
+npm start
 ```
 
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
+Please make sure to introduce/describe tests as appropriate.
 
 ## License
 
